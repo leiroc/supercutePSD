@@ -1,0 +1,135 @@
+/* exported css for PSD.psd */
+
+
+body,html { width:100%;height:100%; }
+div>img { width:100%;height:100%; }
+
+
+body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
+
+
+.slider-item {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+
+.PSD_img_11 {
+    position: absolute;
+    top:    0%;
+    left:   0%;
+    height: 100%;
+    width:  100%;
+}
+
+
+.PSD_img_10 {
+    position: absolute;
+    top:    8.29%;
+    left:   86%;
+    height: 20.56%;
+    width:  10.93%;
+}
+
+
+.PSD_img_9 {
+    position: absolute;
+    top:    60.28%;
+    left:   0%;
+    height: 20.56%;
+    width:  8.13%;
+}
+
+
+.PSD_img_8 {
+    position: absolute;
+    top:    1.49%;
+    left:   65.73%;
+    height: 19.32%;
+    width:  18%;
+}
+
+
+.PSD_img_7 {
+    position: absolute;
+    top:    61.94%;
+    left:   0%;
+    height: 23.88%;
+    width:  34.4%;
+}
+
+
+.PSD_img_6 {
+    position: absolute;
+    top:    20.81%;
+    left:   62.53%;
+    height: 23.88%;
+    width:  34.4%;
+}
+
+
+.PSD_img_5 {
+    position: absolute;
+    top:    14.51%;
+    left:   14.8%;
+    height: 40.79%;
+    width:  85.2%;
+}
+
+
+.PSD_img_4 {
+    position: absolute;
+    top:    60.36%;
+    left:   55.6%;
+    height: 19.15%;
+    width:  38%;
+}
+
+
+.PSD_img_3 {
+    position: absolute;
+    top:    47.67%;
+    left:   0%;
+    height: 12.6%;
+    width:  42%;
+}
+
+
+.PSD_img_2 {
+    position: absolute;
+    top:    7.71%;
+    left:   8.93%;
+    height: 8.95%;
+    width:  27.33%;
+}
+
+
+.PSD_img_1 {
+    position: absolute;
+    top:    17.91%;
+    left:   9.2%;
+    height: 5.47%;
+    width:  18.13%;
+}
+
+
+.PSD_XIAN {
+    position: absolute;
+    top:    18.57%;
+    left:   28.13%;
+    height: 1.82%;
+    width:  9.2%;
+}
+
+
+.PSD_3 {
+    position: absolute;
+    top:    81.75%;
+    left:   28.66%;
+    height: 4.8%;
+    width:  42.66%;
+}
