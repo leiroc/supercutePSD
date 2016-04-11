@@ -1,6 +1,6 @@
 # supercutePSD
 H5 自动PSD生成脚本
-##使用方法说明
+# 使用方法说明
 
 1.打开PSD文件
 
