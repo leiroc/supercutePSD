@@ -1,4 +1,12 @@
 ﻿/**
+ *
+ * 1.打开PSD文件
+ * 2.选择 文件->脚本->浏览 选择 supercutePSD.jsx 文件
+ * 3.选择输出目录，运行，ok
+ * PS: 文件名请用英文格式/如果 错误提示 没有目标文件件 那么请手动创建 imgs 和 css 文件夹在输出路径下；
+ * ===========================================================================================
+ *
+ *
  * export layers to html  //导出图层到html
  * exports photoshop layers as .png or .jpg;   //导出图层为png或者jpg
  * also creates html, css & json for the images,   //生成html，css，json
@@ -13,13 +21,6 @@
 /**
  * Adobe's 'export layers to files.jsx' substantially refactored
  * export layers to files.jsx copyright 2007 Adobe Systems, Incorporated
- * export layers to files.jsx written by Naoki Hada 2007
- * export layers to files.jsx ZStrings and auto layout by Tom Ruark
- */
-
-/**
- * this script copyright 2011 Ken Penn, http://kpenn.com/
- * licensed under the GPL license
  */
 
 // enable double clicking from Mac Finder or Windows Explorer
@@ -33,15 +34,18 @@
 // on localized builds we pull the $$$/Strings from a .dat file, see documentation for more details
 $.localize = true;
 
+var _DATA = {};
+
 // global variables
 var layerindex = 0; //全局字符下标变量
-var strTitle = ("Export Layers To HTML");
+var strTitle = '选项设置';
 var strButtonRun = localize("$$$/JavaScripts/ExportLayersToFiles/Run=Run");
 var strButtonCancel = localize("$$$/JavaScripts/ExportLayersToFiles/Cancel=Cancel");
 var strHelpText = localize("$$$/JavaScripts/ExportLayersToFiles/Help=Please specify the format and location for saving each layer as a file.");
-var strLabelDestination = localize("$$$/JavaScripts/ExportLayersToFiles/Destination=Destination:");
+var strLabelDestination = '导出文件夹:' || localize("$$$/JavaScripts/ExportLayersToFiles/Destination=Destination:");
 var strButtonBrowse = localize("$$$/JavaScripts/ExportLayersToFiles/Browse=&Browse...");
 var strLabelFileNamePrefix = localize("$$$/JavaScripts/ExportLayersToFiles/FileNamePrefix=File Name Prefix:");
+var strLabelCssUnit = "CSS单位选择";
 var strCheckboxVisibleOnly = localize("$$$/JavaScripts/ExportLayersToFiles/VisibleOnly=&Visible Layers Only");
 var strLabelFileType = localize("$$$/JavaScripts/ExportLayersToFiles/FileType=File Type:");
 var strCheckboxIncludeICCProfile = localize("$$$/JavaScripts/ExportLayersToFiles/IncludeICC=&Include ICC Profile");
@@ -231,12 +235,35 @@ function settingDialog(exportInfo) { //设置对话框
 	// -- the third line in the dialog
 	dlgMain.grpTopLeft.add('statictext', undefined, strLabelFileNamePrefix);
 
+
+
 	// -- the fourth line in the dialog
 	dlgMain.etFileNamePrefix = dlgMain.grpTopLeft.add('edittext', undefined, exportInfo.fileNamePrefix.toString());
 	dlgMain.etFileNamePrefix.alignment = 'fill';
 	dlgMain.etFileNamePrefix.preferredSize.width = strToIntWithDefault(stretDestination, 160);
 
+	// start
+	// dlgMain.grpTopLeft.add('statictext', undefined, strLabelCssUnit);
+
+	dlgMain.cssUnitPanel = dlgMain.grpTopLeft.add('panel', undefined, strLabelCssUnit);
+	dlgMain.cssUnitPanel.group = dlgMain.cssUnitPanel.add('group');
+	dlgMain.cssUnitPanel.group.orientation = 'row';
+	dlgMain.cssUnitPanel.group.alignChildren = 'left';
+	dlgMain.cssUnitPanel.group.alignment = 'fill';
+
+	dlgMain.cssUnitPanel.alignment = 'fill';
+
+	dlgMain.cssUnitPx = dlgMain.cssUnitPanel.group.add('RadioButton', undefined, '');
+	dlgMain.cssUnitPx.text = '像素(px)';
+	dlgMain.cssUnitPx.data = 'px';
+	dlgMain.cssUnitPx.value = true;
+
+	dlgMain.cssUnitPer = dlgMain.cssUnitPanel.group.add('RadioButton', undefined, '');
+	dlgMain.cssUnitPer.text = '百分比(%)';
+	dlgMain.cssUnitPer.data = '%';
+
 	// option has been removed, force export visible only
+
 
 	// -- the fifth line in the dialog
 	dlgMain.grpTopLeft.add('statictext', undefined, strCheckboxVisibleOnly);
@@ -325,7 +352,10 @@ function settingDialog(exportInfo) { //设置对话框
 	dlgMain.btnRun = dlgMain.grpTopRight.add('button', undefined, strButtonRun);
 
 	dlgMain.btnRun.onClick = function() {
-
+		// add by ray
+		createCssImgFolder();
+		// get css unit
+		getCssUnit();
 		destination = dlgMain.etDestination.text;
 		if (destination.length == 0) {
 			alert(strAlertSpecifyDestination);
@@ -393,6 +423,21 @@ function settingDialog(exportInfo) { //设置对话框
 	exportInfo.jpegQuality = dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.etQuality.text;
 
 	return result;
+}
+
+
+
+function getCssUnit() {
+	var radios = dlgMain.cssUnitPanel.group.children;
+
+	for(var i = 0, l = radios.length; i < l; i++){
+		var radio = radios[i];
+		if(radio.value === true){
+			_DATA.cssUnit = radio.data;
+			break;
+		}
+	}
+	return _DATA.cssUnit;
 }
 
 /**
@@ -864,18 +909,16 @@ function writeHtml() { //写html
 	htmlOut.writeln('<html>');
 	htmlOut.writeln('<head>');
 	htmlOut.writeln('    <meta charset="utf-8">');
+	htmlOut.writeln('    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0"></meta>');
 	htmlOut.writeln('    <title>' + hdr.psdName + ' export</title>');
 	htmlOut.writeln('    <link rel="stylesheet" href="' + hdr.cssDir + '/'+ hdr.prefix + '.css' + '">');
 	htmlOut.writeln('</head>');
 	htmlOut.writeln('<body>');
-	htmlOut.writeln('<div class="slider-item  ' + hdr.prefix + '">');
+	htmlOut.writeln('<div class="wrap ' + hdr.prefix + '">');
 
 	// Photoshop extracts top first; we'll put em on the page bottom first
 	for (idx; idx >= 0; idx -= 1) {
-
-		htmlOut.writeln('    <div class="' + removeHyphen(images[idx].name) + '">');
-		htmlOut.writeln('          <img src="' + hdr.imgDir + '/' + images[idx].name + hdr.extension + '" alt="" id="' + images[idx].name + '">');
-		htmlOut.writeln('    </div>');
+		htmlOut.writeln('    <div class="' + removeHyphen(images[idx].name) + '"></div>');
 	}
 	//src:"imgs/'+images[idx].name+hdr.extension
 
@@ -907,27 +950,46 @@ function writeCss() { //写css
 	cssOut.writeln('\n');
 	cssOut.writeln('body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }');
 	cssOut.writeln('\n');
-	cssOut.writeln('.slider-item {');
-	cssOut.writeln('    position: absolute;');
-	cssOut.writeln('    left: 0px;');
-	cssOut.writeln('    top: 0px;');
+	cssOut.writeln('.wrap {');
+	cssOut.writeln('    position: relative;');
 	cssOut.writeln('    width: 100%;');
 	cssOut.writeln('    height: 100%;');
-	cssOut.writeln('    background: #000;');
+	cssOut.writeln('    overflow: hidden;');
 	cssOut.writeln('}');
 
 	// Photoshop extracts top first; put em in the css bottom first
-	for (idx; idx >= 0; idx -= 1) {
 
-		cssOut.writeln('\n');
-		cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
-		cssOut.writeln('    position: absolute;');
-		cssOut.writeln('    top:    ' + parseFloat(parseInt((images[idx].top * 100 / hdr.psdHeight)*100)/100) + '%;');
-		cssOut.writeln('    left:   ' + parseFloat(parseInt((images[idx].left * 100 / hdr.psdWidth)*100)/100) + '%;');
-		cssOut.writeln('    height: ' + parseFloat(parseInt((images[idx].height * 100 / hdr.psdHeight)*100)/100) + '%;');
-		cssOut.writeln('    width:  ' + parseFloat(parseInt((images[idx].width * 100 / hdr.psdWidth)*100)/100) + '%;');
-		cssOut.writeln('}');
+	if (_DATA.cssUnit == '%') {
+		for (idx; idx >= 0; idx -= 1) {
+
+			cssOut.writeln('\n');
+			cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
+			cssOut.writeln('    position: absolute;');
+			cssOut.writeln('    top:    ' + parseFloat(parseInt((images[idx].top * 100 / hdr.psdHeight)*100)/100) + '%;');
+			cssOut.writeln('    left:   ' + parseFloat(parseInt((images[idx].left * 100 / hdr.psdWidth)*100)/100) + '%;');
+			cssOut.writeln('    height: ' + parseFloat(parseInt((images[idx].height * 100 / hdr.psdHeight)*100)/100) + '%;');
+			cssOut.writeln('    width:  ' + parseFloat(parseInt((images[idx].width * 100 / hdr.psdWidth)*100)/100) + '%;');
+			cssOut.writeln('    background: url(../' + hdr.imgDir + '/' + images[idx].name + hdr.extension + ') no-repeat;');
+			cssOut.writeln('    background-size: 100% 100%;');
+			cssOut.writeln('}');
+		}
 	}
+	else {
+		for (idx; idx >= 0; idx -= 1) {
+
+			cssOut.writeln('\n');
+			cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
+			cssOut.writeln('    position: absolute;');
+			cssOut.writeln('    top:    ' + parseInt(images[idx].top) + 'px;');
+			cssOut.writeln('    left:   ' + parseInt(images[idx].left) + 'px;');
+			cssOut.writeln('    height: ' + parseInt(images[idx].height) + 'px;');
+			cssOut.writeln('    width:  ' + parseInt(images[idx].width) + 'px;');
+			cssOut.writeln('    background: url(../' + hdr.imgDir + '/' + images[idx].name + hdr.extension + ') no-repeat;');
+			cssOut.writeln('    background-size: 100% 100%;');
+			cssOut.writeln('}');
+		}
+	}
+
 	cssOut.close();
 }
 
@@ -1028,17 +1090,24 @@ function writeTxtFiles() { //调用前面的写方法
 
 }
 
+// add by ray 创建文件夹
+function createCssImgFolder() {
+	var imgFolder = new Folder(dlgMain.etDestination.text + '/' + exportHeader.imgDir);
+	var cssFolder = new Folder(dlgMain.etDestination.text + '/' + exportHeader.cssDir);
+
+	if (!imgFolder.exists) imgFolder.create();
+	if (!cssFolder.exists) cssFolder.create();
+}
+
 /**
  * Function: main
  *   Usage: the core routine for this script
  *   Input: <none>
  *   Return: <none>
  */
-function main() { //入口函数
-	new Folder(exportHeader.imgDir).create();
-	new Folder(exportHeader.cssDir).create();
-	
 
+
+function main() { //入口函数
 	var docName = '',
 		dupDoc,
 		exportInfo = {},
@@ -1098,7 +1167,7 @@ function main() { //入口函数
 				writeTxtFiles();
 				app.preferences.rulerUnits = originalUnit;
 
-				alert(strTitle + strAlertWasSuccessful);
+				alert('导出IMG/CSS/HTML' + strAlertWasSuccessful);
 			}
 
 			app.playbackDisplayDialogs = DialogModes.ALL;
