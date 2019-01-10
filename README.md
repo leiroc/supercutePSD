@@ -1,4 +1,4 @@
-#Bug and News
+# Bug and News
 
 > 2019-01-10
 - 修复：由于目标文件夹不存在,无法完成此动作BUG
