@@ -1,4 +1,4 @@
-/* exported css for PSD.psd */
+/* exported css for demo.psd */
 
 
 body,html { width:100%;height:100%; }
@@ -10,15 +10,18 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .wrap {
     position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 
 .test_img_11 {
     position: absolute;
-    top:    0px;
-    left:   0px;
-    height: 1206px;
-    width:  750px;
+    top:    0rem;
+    left:   0rem;
+    height: 12.06rem;
+    width:  7.5rem;
     background: url(../imgs/test_img_11.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -26,10 +29,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_10 {
     position: absolute;
-    top:    100px;
-    left:   645px;
-    height: 248px;
-    width:  82px;
+    top:    1rem;
+    left:   6.45rem;
+    height: 2.48rem;
+    width:  0.82rem;
     background: url(../imgs/test_img_10.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -37,10 +40,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_9 {
     position: absolute;
-    top:    727px;
-    left:   0px;
-    height: 248px;
-    width:  61px;
+    top:    7.27rem;
+    left:   0rem;
+    height: 2.48rem;
+    width:  0.61rem;
     background: url(../imgs/test_img_9.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -48,10 +51,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_8 {
     position: absolute;
-    top:    18px;
-    left:   493px;
-    height: 233px;
-    width:  135px;
+    top:    0.18rem;
+    left:   4.93rem;
+    height: 2.33rem;
+    width:  1.35rem;
     background: url(../imgs/test_img_8.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -59,10 +62,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_7 {
     position: absolute;
-    top:    747px;
-    left:   0px;
-    height: 288px;
-    width:  258px;
+    top:    7.47rem;
+    left:   0rem;
+    height: 2.88rem;
+    width:  2.58rem;
     background: url(../imgs/test_img_7.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -70,10 +73,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_6 {
     position: absolute;
-    top:    251px;
-    left:   469px;
-    height: 288px;
-    width:  258px;
+    top:    2.51rem;
+    left:   4.69rem;
+    height: 2.88rem;
+    width:  2.58rem;
     background: url(../imgs/test_img_6.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -81,10 +84,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_5 {
     position: absolute;
-    top:    175px;
-    left:   111px;
-    height: 492px;
-    width:  639px;
+    top:    1.75rem;
+    left:   1.11rem;
+    height: 4.92rem;
+    width:  6.39rem;
     background: url(../imgs/test_img_5.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -92,10 +95,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_4 {
     position: absolute;
-    top:    728px;
-    left:   417px;
-    height: 231px;
-    width:  285px;
+    top:    7.28rem;
+    left:   4.17rem;
+    height: 2.31rem;
+    width:  2.85rem;
     background: url(../imgs/test_img_4.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -103,10 +106,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_3 {
     position: absolute;
-    top:    575px;
-    left:   0px;
-    height: 152px;
-    width:  315px;
+    top:    5.75rem;
+    left:   0rem;
+    height: 1.52rem;
+    width:  3.15rem;
     background: url(../imgs/test_img_3.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -114,10 +117,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_2 {
     position: absolute;
-    top:    93px;
-    left:   67px;
-    height: 108px;
-    width:  205px;
+    top:    0.93rem;
+    left:   0.67rem;
+    height: 1.08rem;
+    width:  2.05rem;
     background: url(../imgs/test_img_2.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -125,10 +128,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_img_1 {
     position: absolute;
-    top:    216px;
-    left:   69px;
-    height: 66px;
-    width:  136px;
+    top:    2.16rem;
+    left:   0.69rem;
+    height: 0.66rem;
+    width:  1.36rem;
     background: url(../imgs/test_img_1.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -136,10 +139,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_XIAN {
     position: absolute;
-    top:    224px;
-    left:   211px;
-    height: 22px;
-    width:  69px;
+    top:    2.24rem;
+    left:   2.11rem;
+    height: 0.22rem;
+    width:  0.69rem;
     background: url(../imgs/test_XIAN.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -147,10 +150,10 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 
 .test_3 {
     position: absolute;
-    top:    986px;
-    left:   215px;
-    height: 58px;
-    width:  320px;
+    top:    9.86rem;
+    left:   2.15rem;
+    height: 0.58rem;
+    width:  3.2rem;
     background: url(../imgs/test_3.png) no-repeat;
     background-size: 100% 100%;
 }

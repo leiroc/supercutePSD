@@ -2,11 +2,35 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>PSD.psd export</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0"></meta>
+    <title>demo.psd export</title>
     <link rel="stylesheet" href="css/test.css">
+<script>
+function setDocFontSize(base) {
+var width = 375,
+domEle = document.documentElement;
+dw = domEle.clientWidth || width,
+iw = window.innerWidth || width,
+sw = window.screen.width || iw,
+saw = window.screen.availWidth || iw,
+w = Math.min(dw, iw, sw, saw);
+base = base || 750; // Éè¼Æ¸å
+if (w > base) {
+w = base;
+}
+if (window.devicePixelRatio) {
+dpr = window.devicePixelRatio;
+} else {
+dpr = navigator.userAgent.match(/iphone/i) ? (w > 818 ? 3 : w > 480 ? 2 : 1) : 1;
+}
+dpr = Math.floor(dpr);
+domEle.style.fontSize = w / base * 100 + "px";
+domEle.dataset.dpr = dpr;
+}
+</script>
 </head>
-<body>
-<div class="wrap  test">
+<body onload="setDocFontSize(750)">
+<div class="wrap test">
     <div class="test_img_11"></div>
     <div class="test_img_10"></div>
     <div class="test_img_9"></div>

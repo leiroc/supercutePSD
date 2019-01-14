@@ -912,8 +912,38 @@ function writeHtml() { //写html
 	htmlOut.writeln('    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0"></meta>');
 	htmlOut.writeln('    <title>' + hdr.psdName + ' export</title>');
 	htmlOut.writeln('    <link rel="stylesheet" href="' + hdr.cssDir + '/'+ hdr.prefix + '.css' + '">');
+	// 添加script
+	htmlOut.writeln('<script>');
+
+	// 增加单位适配
+	htmlOut.writeln('function setDocFontSize(base) {');
+		htmlOut.writeln('var width = 375,');
+		htmlOut.writeln('domEle = document.documentElement;');
+		htmlOut.writeln('dw = domEle.clientWidth || width,');
+		htmlOut.writeln('iw = window.innerWidth || width,');
+		htmlOut.writeln('sw = window.screen.width || iw,');
+		htmlOut.writeln('saw = window.screen.availWidth || iw,');
+		htmlOut.writeln('w = Math.min(dw, iw, sw, saw);');
+
+		htmlOut.writeln('base = base || 750;');
+		htmlOut.writeln('if (w > base) {');
+			htmlOut.writeln('w = base;');
+			htmlOut.writeln('}');
+			htmlOut.writeln('if (window.devicePixelRatio) {');
+				htmlOut.writeln('dpr = window.devicePixelRatio;');
+				htmlOut.writeln('} else {');
+					htmlOut.writeln('dpr = navigator.userAgent.match(/iphone/i) ? (w > 818 ? 3 : w > 480 ? 2 : 1) : 1;');
+					htmlOut.writeln('}');
+					htmlOut.writeln('dpr = Math.floor(dpr);');
+					htmlOut.writeln('domEle.style.fontSize = w / base * 100 + "px";');
+					htmlOut.writeln('domEle.dataset.dpr = dpr;');
+					htmlOut.writeln('}');
+
+	htmlOut.writeln('</script>');
+	// end
+
 	htmlOut.writeln('</head>');
-	htmlOut.writeln('<body>');
+	htmlOut.writeln('<body onload="setDocFontSize('+ hdr.psdWidth +')">');
 	htmlOut.writeln('<div class="wrap ' + hdr.prefix + '">');
 
 	// Photoshop extracts top first; we'll put em on the page bottom first
@@ -980,10 +1010,18 @@ function writeCss() { //写css
 			cssOut.writeln('\n');
 			cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
 			cssOut.writeln('    position: absolute;');
-			cssOut.writeln('    top:    ' + parseInt(images[idx].top) + 'px;');
-			cssOut.writeln('    left:   ' + parseInt(images[idx].left) + 'px;');
-			cssOut.writeln('    height: ' + parseInt(images[idx].height) + 'px;');
-			cssOut.writeln('    width:  ' + parseInt(images[idx].width) + 'px;');
+
+			// cssOut.writeln('    top:    ' + parseInt(images[idx].top) + 'px;');
+			// cssOut.writeln('    left:   ' + parseInt(images[idx].left) + 'px;');
+			// cssOut.writeln('    height: ' + parseInt(images[idx].height) + 'px;');
+			// cssOut.writeln('    width:  ' + parseInt(images[idx].width) + 'px;');
+
+			// 增加适配单位
+			cssOut.writeln('    top:    ' + parseFloat(images[idx].top) / 100 + 'rem;');
+			cssOut.writeln('    left:   ' + parseFloat(images[idx].left) / 100 + 'rem;');
+			cssOut.writeln('    height: ' + parseFloat(images[idx].height) / 100 + 'rem;');
+			cssOut.writeln('    width:  ' + parseFloat(images[idx].width) / 100 + 'rem;');
+
 			cssOut.writeln('    background: url(../' + hdr.imgDir + '/' + images[idx].name + hdr.extension + ') no-repeat;');
 			cssOut.writeln('    background-size: 100% 100%;');
 			cssOut.writeln('}');
