@@ -254,9 +254,13 @@ function settingDialog(exportInfo) { //设置对话框
 	dlgMain.cssUnitPanel.alignment = 'fill';
 
 	dlgMain.cssUnitPx = dlgMain.cssUnitPanel.group.add('RadioButton', undefined, '');
+	dlgMain.cssUnitPx.text = '相对单位(rem)';
+	dlgMain.cssUnitPx.data = 'rem';
+	dlgMain.cssUnitPx.value = true;
+
+	dlgMain.cssUnitPx = dlgMain.cssUnitPanel.group.add('RadioButton', undefined, '');
 	dlgMain.cssUnitPx.text = '像素(px)';
 	dlgMain.cssUnitPx.data = 'px';
-	dlgMain.cssUnitPx.value = true;
 
 	dlgMain.cssUnitPer = dlgMain.cssUnitPanel.group.add('RadioButton', undefined, '');
 	dlgMain.cssUnitPer.text = '百分比(%)';
@@ -1004,23 +1008,34 @@ function writeCss() { //写css
 			cssOut.writeln('}');
 		}
 	}
-	else {
+	else if (_DATA.cssUnit == 'rem') {
 		for (idx; idx >= 0; idx -= 1) {
 
 			cssOut.writeln('\n');
 			cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
 			cssOut.writeln('    position: absolute;');
 
-			// cssOut.writeln('    top:    ' + parseInt(images[idx].top) + 'px;');
-			// cssOut.writeln('    left:   ' + parseInt(images[idx].left) + 'px;');
-			// cssOut.writeln('    height: ' + parseInt(images[idx].height) + 'px;');
-			// cssOut.writeln('    width:  ' + parseInt(images[idx].width) + 'px;');
-
 			// 增加适配单位
 			cssOut.writeln('    top:    ' + parseFloat(images[idx].top) / 100 + 'rem;');
 			cssOut.writeln('    left:   ' + parseFloat(images[idx].left) / 100 + 'rem;');
 			cssOut.writeln('    height: ' + parseFloat(images[idx].height) / 100 + 'rem;');
 			cssOut.writeln('    width:  ' + parseFloat(images[idx].width) / 100 + 'rem;');
+
+			cssOut.writeln('    background: url(../' + hdr.imgDir + '/' + images[idx].name + hdr.extension + ') no-repeat;');
+			cssOut.writeln('    background-size: 100% 100%;');
+			cssOut.writeln('}');
+		}
+	} else {
+		for (idx; idx >= 0; idx -= 1) {
+
+			cssOut.writeln('\n');
+			cssOut.writeln('.' + removeHyphen(images[idx].name) + ' {');
+			cssOut.writeln('    position: absolute;');
+
+			cssOut.writeln('    top:    ' + parseInt(images[idx].top) + 'px;');
+			cssOut.writeln('    left:   ' + parseInt(images[idx].left) + 'px;');
+			cssOut.writeln('    height: ' + parseInt(images[idx].height) + 'px;');
+			cssOut.writeln('    width:  ' + parseInt(images[idx].width) + 'px;');
 
 			cssOut.writeln('    background: url(../' + hdr.imgDir + '/' + images[idx].name + hdr.extension + ') no-repeat;');
 			cssOut.writeln('    background-size: 100% 100%;');

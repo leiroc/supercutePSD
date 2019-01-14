@@ -16,144 +16,144 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-.test_img_11 {
+.rem_img_11 {
     position: absolute;
     top:    0rem;
     left:   0rem;
     height: 12.06rem;
     width:  7.5rem;
-    background: url(../imgs/test_img_11.png) no-repeat;
+    background: url(../imgs/rem_img_11.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_10 {
+.rem_img_10 {
     position: absolute;
     top:    1rem;
     left:   6.45rem;
     height: 2.48rem;
     width:  0.82rem;
-    background: url(../imgs/test_img_10.png) no-repeat;
+    background: url(../imgs/rem_img_10.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_9 {
+.rem_img_9 {
     position: absolute;
     top:    7.27rem;
     left:   0rem;
     height: 2.48rem;
     width:  0.61rem;
-    background: url(../imgs/test_img_9.png) no-repeat;
+    background: url(../imgs/rem_img_9.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_8 {
+.rem_img_8 {
     position: absolute;
     top:    0.18rem;
     left:   4.93rem;
     height: 2.33rem;
     width:  1.35rem;
-    background: url(../imgs/test_img_8.png) no-repeat;
+    background: url(../imgs/rem_img_8.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_7 {
+.rem_img_7 {
     position: absolute;
     top:    7.47rem;
     left:   0rem;
     height: 2.88rem;
     width:  2.58rem;
-    background: url(../imgs/test_img_7.png) no-repeat;
+    background: url(../imgs/rem_img_7.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_6 {
+.rem_img_6 {
     position: absolute;
     top:    2.51rem;
     left:   4.69rem;
     height: 2.88rem;
     width:  2.58rem;
-    background: url(../imgs/test_img_6.png) no-repeat;
+    background: url(../imgs/rem_img_6.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_5 {
+.rem_img_5 {
     position: absolute;
     top:    1.75rem;
     left:   1.11rem;
     height: 4.92rem;
     width:  6.39rem;
-    background: url(../imgs/test_img_5.png) no-repeat;
+    background: url(../imgs/rem_img_5.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_4 {
+.rem_img_4 {
     position: absolute;
     top:    7.28rem;
     left:   4.17rem;
     height: 2.31rem;
     width:  2.85rem;
-    background: url(../imgs/test_img_4.png) no-repeat;
+    background: url(../imgs/rem_img_4.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_3 {
+.rem_img_3 {
     position: absolute;
     top:    5.75rem;
     left:   0rem;
     height: 1.52rem;
     width:  3.15rem;
-    background: url(../imgs/test_img_3.png) no-repeat;
+    background: url(../imgs/rem_img_3.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_2 {
+.rem_img_2 {
     position: absolute;
     top:    0.93rem;
     left:   0.67rem;
     height: 1.08rem;
     width:  2.05rem;
-    background: url(../imgs/test_img_2.png) no-repeat;
+    background: url(../imgs/rem_img_2.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_img_1 {
+.rem_img_1 {
     position: absolute;
     top:    2.16rem;
     left:   0.69rem;
     height: 0.66rem;
     width:  1.36rem;
-    background: url(../imgs/test_img_1.png) no-repeat;
+    background: url(../imgs/rem_img_1.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_XIAN {
+.rem_XIAN {
     position: absolute;
     top:    2.24rem;
     left:   2.11rem;
     height: 0.22rem;
     width:  0.69rem;
-    background: url(../imgs/test_XIAN.png) no-repeat;
+    background: url(../imgs/rem_XIAN.png) no-repeat;
     background-size: 100% 100%;
 }
 
 
-.test_3 {
+.rem_3 {
     position: absolute;
     top:    9.86rem;
     left:   2.15rem;
     height: 0.58rem;
     width:  3.2rem;
-    background: url(../imgs/test_3.png) no-repeat;
+    background: url(../imgs/rem_3.png) no-repeat;
     background-size: 100% 100%;
 }
