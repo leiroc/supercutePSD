@@ -1,4 +1,10 @@
 
+## 写在前面 ##
+
+- [在线说明文档](http://v5cy.cn/qa/supercute-psd.html)
+- [在线演示地址](http://v5cy.cn/qa/psd-example/)
+
+
 此PS脚本主要实现以下功能：
 
 - **快速切图**（切图是很费时间，利用插件切图能很大程度提高效率）
